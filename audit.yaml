@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: Ассистент учителя API
+  description: |-
+    Ассистент учителя API
+    Contact Support:
+     Email: contact@example.com
+  version: 1.0.0
+paths:
+  /rest/audit/messages:
+    post:
+      summary: Зарегистрировать сообщение аудита
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/userAuditMessageDto'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+                format: uuid
+        '500':
+          description: Unsuccessful operation
+  /rest/audit/messages/{id}:
+    get:
+      summary: Получить сообщение аудита
+      parameters:
+        - name: id
+          schema:
+            type: string
+            format: uuid
+          in: path
+          required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/userAuditMessageDto"
+        '500':
+          description: Unsuccessful operation
+  /rest/audit/messages/find:
+    post:
+      summary: Найти сообщения аудита
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/auditMessagesFindRequest'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listOfUserAuditMessageDto"
+        '400':
+          description: PageLimit слишком большой
+        '404':
+          description: Сообщения аудита не найдены
+        '500':
+          description: Unsuccessful operation
+components:
+  schemas:
+    action:
+      type: string
+      enum: 
+        - CREATE
+        - READ
+        - UPDATE
+        - DELETE
+    userAuditMessageDto:
+      type: object
+      properties:
+        message:
+          type: string
+        operationCode:
+          type: string
+        operationName:
+          type: string
+        createTs:
+          type: string
+          format: date-time
+        isSuccess:
+          type: boolean
+        action:
+          $ref: "#/components/schemas/action"
+        entityId:
+          type: string
+          format: uuid
+        entityTypeCode:
+          type: string
+        userId:
+          type: string
+          format: uuid
+    listOfUserAuditMessageDto:
+      type: array
+      items:
+        $ref: "#/components/schemas/userAuditMessageDto"
+    auditMessagesFindRequest:
+      type: object
+      properties:
+        dateFrom:
+          type: string
+          format: date-time
+        dateTo:
+          type: string
+          format: date-time
+        auditOperationCodes:
+          type: array
+          items:
+            type: string
+        entityTypeCode:
+          type: string
+        entityId:
+          type: string
+          format: uuid
+        userIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        textSearch:
+          type: string
+        pageLimit:
+          type: integer
+        pageOffset:
+          type: integer

@@ -1,0 +1,37 @@
+request:
+  method: POST
+  url: /rest/audit/messages
+  headers:
+    Content-Type: application/json
+  body:
+    message: "string"
+    operationCode: "string"
+    operationName: "string"
+    createTs: "2024-02-15T14:36:01.958Z"
+    isSuccess: true
+    action: "CREATE"
+    entityId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+    entityTypeCode: "string"
+    userId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+response:
+  status: 200
+  body:
+    "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+---
+request:
+  method: POST
+  url: /rest/audit/messages
+  headers:
+    Content-Type: application/json
+  body:
+    message: "string"
+    operationCode: "string"
+    operationName: "string"
+    createTs: "2024-02-15T14:36:01.958Z"
+    isSuccess: true
+    action: "CREATE"
+    entityId: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+    entityTypeCode: "string"
+    userId: null
+response:
+  status: 500
