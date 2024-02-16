@@ -4,6 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 .cloud.schema.json
+.allure
 
 ### STS ###
 .apt_generated
