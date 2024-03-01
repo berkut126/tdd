@@ -14,7 +14,7 @@ class AuditController(private val auditService: AuditService) {
     @PostMapping
     fun registerAuditMessage(@RequestBody auditMessage: AuditMessage): ResponseEntity<UUID> {
         auditService.registerAuditMessage()
-        return ResponseEntity.ok(UUID.randomUUID())
+        return ResponseEntity.ok(auditMessage.entityId)
     }
 
 }
