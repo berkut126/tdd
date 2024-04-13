@@ -1,10 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Ассистент учителя API
-  description: |-
-    Ассистент учителя API
-    Contact Support:
-     Email: contact@example.com
+  title: Аудит
   version: 1.0.0
 paths:
   /rest/audit/messages:
